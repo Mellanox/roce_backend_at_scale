@@ -3,7 +3,7 @@
 Kubernetes pods' use of several additional high-performance network interfaces affects suitable network designs.
 The solution design of scale-out a high-performance L2 network is based on the Border Gateway Protocol (BGP) with EVPN and VXLAN overlays, which are used for network virtualization. VXLAN tunnels can satisfy this L2 adjacency requirement, and EVPN serves as a standard for scale-out L2 Ethernet fabrics. VXLAN can virtualize the data center network, enabling layer 2 segments to be extended over an IP core (the underlay). EVPN is the control plane for modern VXLAN deployments, allowing VTEPs to discover each other via EVPN and exchange reachability information such as MAC and IPs across racks.
 
-# This solution is based on Mellanox Onyx switch operating system and supported only from Mellanox Onyx version 3.8.1208 and above.
+This solution is based on **Mellanox Onyx switch operating system** and supported only from Mellanox Onyx **version 3.8.1208 and above**.
 
 # Solution logical diagram
 
