@@ -1,3 +1,4 @@
+
 # Example of Scale-Out Ethernet fabric deployment for RoCE accelerated K8s cluster
 
 Kubernetes pods' use of several additional high-performance network interfaces affects suitable network designs.
@@ -24,3 +25,11 @@ Service rack Leaf 1 switch IP address - 10.7.214.3
 Service rack Leaf 2 switch IP address - 10.7.214.9
 
 ![at scale](https://user-images.githubusercontent.com/29685932/63930381-e982aa00-ca5b-11e9-91de-08b8be0a821b.JPG)
+
+In examples folder can be found Switch running configuration files.
+
+Referenses:
+
+[EVPN VXLAN: The Next Generation of Network Virtualization](https://www.mellanox.com/campaigns/2018/the-next-generation-of-network-virtualization-with-evpn-vxlan/)
+[Ethernet VPN User manual for Mellanox Onyx](https://docs.mellanox.com/pages/viewpage.action?pageId=15054377#EthernetVPN(EVPN)-L2Configuration,MLAGandVLANs)
+[RDG: Scale-Out Ethernet fabric deployment for RoCE accelerated K8s cluster](https://docs.mellanox.com/pages/viewpage.action?pageId=18483472)
