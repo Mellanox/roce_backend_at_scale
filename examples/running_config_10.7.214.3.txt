@@ -1,0 +1,135 @@
+show running-config
+
+##
+## Running database "initial"
+## Generated at 2019/08/29 08:50:39 +0000
+## Hostname: LeafM1
+##
+
+##
+## Running-config temporary prefix mode setting
+##
+no cli default prefix-modes enable
+
+##
+## Chassis configuration
+##
+no what-just-happened auto-export forwarding enable
+   
+##
+## MLAG protocol
+##
+   protocol mlag
+   
+##
+## Interface Ethernet configuration
+##
+   interface port-channel 4094
+   interface ethernet 1/51 switchport mode hybrid
+   interface ethernet 1/55-1/56 channel-group 4094 mode active
+   
+##
+## LAG configuration
+##
+   lacp
+   
+##
+## VLAN configuration
+##
+   vlan 111-114
+   vlan 4094
+   interface ethernet 1/51 switchport hybrid allowed-vlan all
+   
+##
+## L3 configuration
+##
+   ip routing vrf default
+   interface ethernet 1/49-1/50 no switchport force
+   interface loopback 1
+   interface vlan 4094
+   interface ethernet 1/49 ip address 172.16.5.1/30 primary
+   interface ethernet 1/50 ip address 172.16.6.1/30 primary
+   interface loopback 1 ip address 172.16.102.102/32 primary
+   interface vlan 4094 ip address 123.123.123.2/30 primary
+   
+##
+## LLDP configuration
+##
+   lldp
+   
+##
+## MLAG configurations
+##
+   mlag-vip storage-mlag ip 1.1.1.1 /30 force
+no mlag shutdown
+   interface port-channel 4094 ipl 1
+   interface vlan 4094 ipl 1 peer-address 123.123.123.1
+   
+##
+## NVE configurations
+##
+   protocol nve
+   interface nve 1
+   interface nve 1 vxlan source interface loopback 1
+   interface nve 1 nve controller bgp
+   interface nve 1 vxlan mlag-tunnel-ip 172.16.104.104
+   interface nve 1  nve vni 100111 vlan 111  
+   interface nve 1  nve vni 100112 vlan 112  
+   interface nve 1  nve vni 100113 vlan 113  
+   interface nve 1  nve vni 100114 vlan 114  
+   interface nve 1 nve neigh-suppression
+   
+##
+## BGP configuration
+##
+   protocol bgp
+   router bgp 65003 vrf default
+   router bgp 65003 vrf default bgp fast-external-fallover
+   router bgp 65003 vrf default maximum-paths 32
+   router bgp 65003 vrf default bestpath as-path multipath-relax force
+   router bgp 65003 vrf default neighbor evpn-peers peer-group
+   router bgp 65003 vrf default neighbor evpn-peers send-community
+   router bgp 65003 vrf default neighbor evpn-peers send-community extended
+   router bgp 65003 vrf default neighbor 172.16.5.2 remote-as 65005
+   router bgp 65003 vrf default neighbor 172.16.6.2 remote-as 65005
+   router bgp 65003 vrf default neighbor 172.16.5.2 peer-group evpn-peers
+   router bgp 65003 vrf default neighbor 172.16.6.2 peer-group evpn-peers
+   router bgp 65003 vrf default address-family l2vpn-evpn neighbor evpn-peers next-hop-unchanged
+   router bgp 65003 vrf default address-family l2vpn-evpn neighbor evpn-peers activate
+   router bgp 65003 vrf default network 172.16.102.102 /32
+   router bgp 65003 vrf default network 172.16.104.104 /32
+   router bgp 65003 vrf default address-family l2vpn-evpn auto-create
+   
+##
+## Other IP configuration
+##
+   hostname LeafM1
+   
+##
+## AAA remote server configuration
+##
+# ldap bind-password ********
+# radius-server key ********
+# tacacs-server key ********
+   
+##
+## Network management configuration
+##
+# web proxy auth basic password ********
+no ntp server 192.114.62.250 disable
+   ntp server 192.114.62.250 keyID 0
+no ntp server 192.114.62.250 trusted-enable
+   ntp server 192.114.62.250 version 4
+   
+##
+## X.509 certificates configuration
+##
+#
+# Certificate name system-self-signed, ID 1cb8ebdd14840e5375ae49fa30cfe24103f53886
+# (public-cert config omitted since private-key config is hidden)
+
+##
+## Persistent prefix mode setting
+##
+cli default prefix-modes enable
+
